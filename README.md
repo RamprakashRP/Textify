@@ -1,108 +1,86 @@
-**📄 Textify — AI-Powered Insurance Document Q&A System
-**
-Textify is an intelligent RAG-powered platform for insurance documents.
-Upload PDFs, Word files, and emails, and get instant, citation-backed answers with confidence scores.
-Built with a modular architecture combining FastAPI, Azure OpenAI, FAISS, Supabase, and a polished React + TypeScript frontend.
+# **Textify** 📝
 
+**AI-powered intelligent document Q&A agent**. Upload PDFs, Word docs, and emails to get instant answers with citations and confidence scores. Perfect for **insurance documents** and other structured/unstructured files.
 
-**✨ Overview
-**
-Insurance companies handle massive volumes of unstructured documents. Textify enables users to:
-Upload multiple insurance PDFs, DOCX, and emails
-Ask questions and get accurate AI-generated answers
-Retrieve context with citations for compliance and auditing
+----------
 
+## **🚀 Features**
 
-**Key Benefits:
-**
-⚡ Fast, real-time answers
-🔍 Semantic search across multiple documents
-🛡️ Secure storage and access control
+-   **Intelligent Document Processing**: PDF, DOCX, and email support with smart chunking
+    
+-   **RAG Architecture**: FAISS vector search + Azure OpenAI generation
+    
+-   **High-Performance Caching**: In-memory vector cache for instant retrieval
+    
+-   **Cloud Storage**: Supabase integration for persistent storage
+    
+-   **Global Search**: Cross-document search capabilities
+    
+-   **Concurrent Processing**: Parallel question processing for maximum throughput
+    
+-   **Production Ready**: Backend built with FastAPI, ready for cloud deployment
+    
 
+----------
 
-**🏗️ System Architecture
-**
-Frontend (React + TypeScript)
-        ↓
-Backend API (FastAPI)
-        ↓
-Text Extraction → Chunking → Embeddings
-        ↓                   ↓
- Supabase Storage     FAISS Vector Store
-        ↓                   ↓
-          Azure OpenAI (LLM Answering)
+## **📋 Technologies Used**
 
+-   **Backend**: FastAPI, Python 3.9+, FAISS, Azure OpenAI, Supabase
+    
+-   **Frontend**: React, Vite, TypeScript, Tailwind CSS, shadcn-ui, React Query, React Router
+    
 
-**🚀 Features
-**
-📂 Document Processing
+----------
 
-PDF / DOCX / Email formats supported
-Smart semantic chunking
-Batch embeddings for speed
+## **📂 Folder Structure**
+````
+`.
+├── backend/
+│   ├── main.py
+│   ├── supabase_utils.py
+│   ├── requirements.txt
+│   └── README_backend.md
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── layout/
+│   │   │   └── ui/
+│   │   ├── hooks/
+│   │   ├── lib/
+│   │   ├── pages/
+│   │   └── services/
+│   ├── package.json
+│   └── README_frontend.md
+└── README.md` 
+````
 
-🔎 Retrieval-Augmented QA
+----------
 
-FAISS similarity search
-Multi-question processing
-Citation-backed answers
+## **📋 Backend Installation**
 
-⚡ Performance
+### **Prerequisites**
 
-In-memory vector cache for repeated queries
-Startup preloading for instant responses
+-   Python 3.9+
+    
+-   Azure OpenAI API access
+    
+-   Supabase account with storage bucket
+    
 
-🔐 Security
+### **Steps**
+````
 
-Bearer-token API authentication
-CORS protection
+`git clone https://github.com/your_username/textify.git cd textify/backend
+pip install -r requirements.txt` 
+````
 
-Supabase storage with role-level access
+### **Environment Variables**
 
-🖥️ Frontend
+Create a `.env` file with:
+````
 
-Drag-and-drop document upload
-Real-time streaming of answers
-Responsive and clean UI with shadcn components
-
-
-**🧰 Tech Stack
-**
-Backend:
-
-FastAPI
-Python 3.9+
-FAISS vector search
-Azure OpenAI
-Supabase storage
-
-Frontend:
-
-React + TypeScript
-Vite
-Tailwind CSS
-shadcn UI
-React Query
-
-
-**🔧 Installation & Setup
-**
-Backend
-
-Clone the repo:
-
-git clone https://github.com/your_username/Textify.git
-cd backend
-
-
-Install dependencies:
-
-pip install -r requirements.txt
-
-
-Create .env file:
-
-VALID_TOKEN=your_secure_token_here
+`VALID_TOKEN=your_secure_token_here
 AZURE_OPENAI_ENDPOINT=https://your-resource.openai.azure.com/
 AZURE_OPENAI_API_KEY=your_azure_openai_api_key
 AZURE_OPENAI_DEPLOYMENT_NAME=gpt-4
@@ -110,26 +88,22 @@ SUPABASE_URL=https://your-project.supabase.co
 SUPABASE_KEY=your_supabase_anon_key
 SUPABASE_BUCKET=documents
 ENVIRONMENT=production
-DEBUG=false
+DEBUG=false` 
+````
+
+----------
+
+### **🏃 Running Backend**
+````
+
+`python main.py # or with uvicorn uvicorn main:app --host 0.0.0.0 --port 8000 --reload` 
+````
+
+----------
+
+## **🌐 API Endpoints**
 
 
-Run locally:
-
-uvicorn main:app --host 0.0.0.0 --port 8000 --reload
-
-Frontend
-
-Navigate to frontend:
-
-cd frontend
-
-
-Install npm packages:
-
-npm install
-
-**📚 API Endpoints
-**
 | Endpoint | Method | Description |
 |---------|--------|-------------|
 | `/api/v1/health` | GET | Service health check |
@@ -142,102 +116,133 @@ npm install
 | `/api/v1/cache/refresh` | POST | Reload cache |
 | `/api/v1/cache/clear` | POST | Clear cache |
 
-**📁 Folder Structure
-**
-Frontend
-frontend/
- ├── public/
- ├── src/
- │   ├── components/
- │   │   ├── layout/
- │   │   └── ui/
- │   ├── hooks/
- │   ├── lib/
- │   ├── pages/
- │   └── services/
- ├── .gitignore
- ├── index.html
- ├── package.json
- └── vite.config.ts
+## **🧪 Example Usage**
 
-Backend
-backend/
- ├── main.py
- ├── services/
- ├── processors/
- ├── utils/
- ├── cache/
- ├── requirements.txt
- ├── .env.example
+### **1️⃣ Upload a Document**
+````
 
-**🧪 Example Usage
-**
-1️⃣ Upload a Document
+`import requests
 
-Upload your insurance PDF, Word file, or email for processing:
-
-import requests
-
-API_URL = "http://localhost:8000"
-TOKEN = "your_valid_token"
-headers = {"Authorization": f"Bearer {TOKEN}"}
-
-# Upload document
-with open("insurance_policy.pdf", "rb") as f:
-    response = requests.post(
-        f"{API_URL}/api/v1/documents/upload",
+API_URL = "http://localhost:8000" TOKEN = "your_valid_token" headers = {"Authorization": f"Bearer {TOKEN}"} with  open("insurance_policy.pdf", "rb") as f:
+    response = requests.post( f"{API_URL}/api/v1/documents/upload",
         headers=headers,
         files={"file": f}
     )
 
-# Get the document ID for future queries
-doc_id = response.json()["document_id"]
-print(f"✅ Document uploaded successfully! ID: {doc_id}")
+doc_id = response.json()["document_id"] print(f"✅ Document uploaded successfully! ID: {doc_id}")` 
+````
 
-2️⃣ Ask Questions (RAG-Powered)
+----------
 
-Query your document with specific questions:
+### **2️⃣ Ask Questions (RAG-Powered)**
+````
 
-# Example question to the uploaded document
-questions = ["What is the coverage amount?", "Who is the policyholder?"]
+`questions = ["What is the coverage amount?", "Who is the policyholder?"]
 
-response = requests.post(
-    f"{API_URL}/api/v1/hackrx/run",
+response = requests.post( f"{API_URL}/api/v1/hackrx/run",
     headers=headers,
-    json={
-        "document_id": doc_id,
-        "questions": questions
+    json={ "document_id": doc_id, "questions": questions
     }
-)
+) for ans in response.json()["answers"]: print(f"💡 Question: {ans['question']}") print(f"📝 Answer: {ans['answer']}") print(f"📊 Confidence: {ans['confidence']}") print(f"📚 Sources: {ans['sources']}") print("-" * 40)` 
+````
 
-# Print answers with confidence and sources
-for ans in response.json()["answers"]:
-    print(f"💡 Question: {ans['question']}")
-    print(f"📝 Answer: {ans['answer']}")
-    print(f"📊 Confidence: {ans['confidence']}")
-    print(f"📚 Sources: {ans['sources']}")
-    print("-" * 40)
+----------
 
-3️⃣ Global Search Across Documents
+### **3️⃣ Global Search Across Documents**
+````
 
-Search across all uploaded documents for a keyword or topic:
-
-query = "Claim process"
-
-response = requests.post(
-    f"{API_URL}/api/v1/query/global",
+`query = "Claim process" response = requests.post( f"{API_URL}/api/v1/query/global",
     headers=headers,
-    json={
-        "query": query,
-        "top_k": 5,
-        "max_docs": 3
-    }
-)
+    json={"query": query, "top_k": 5, "max_docs": 3}
+) print("🔍 Top results:") for idx, item in  enumerate(response.json()["results"], 1): print(f"{idx}. Document: {item['document_id']}, Snippet: {item['snippet']}")` 
+````
 
-print("🔍 Top results:")
-for idx, item in enumerate(response.json()["results"], 1):
-    print(f"{idx}. Document: {item['document_id']}, Snippet: {item['snippet']}")
+----------
 
-Run development server:
+## **⚡ Frontend Installation**
 
-npm run dev
+### **Prerequisites**
+
+-   Node.js v18.x+
+    
+-   npm
+    
+
+### **Steps**
+````
+
+`cd ../frontend
+npm install
+npm run dev` 
+
+Open [http://localhost:8080](http://localhost:8080) in your browser.
+````
+
+----------
+
+## **📊 Frontend Structure**
+
+-   `components/layout/` – Page structure
+    
+-   `components/ui/` – Reusable UI components
+    
+-   `hooks/` – Custom React hooks
+    
+-   `lib/` – Utility functions
+    
+-   `pages/` – Pages for routing
+    
+-   `services/` – API interaction
+    
+
+----------
+
+## **💡 Tips**
+
+-   Always upload a sample document before asking questions
+    
+-   Check confidence scores and sources for each answer
+    
+-   Use global search to find info across multiple documents
+    
+
+----------
+
+## **🤝 Contributing**
+
+1.  Fork the repository
+    
+2.  Create a feature branch
+    
+3.  Commit your changes
+    
+4.  Push to the branch
+    
+5.  Create a Pull Request
+    
+
+----------
+
+## **🆘 Support**
+
+-   Create an issue in the repo
+    
+-   Check existing documentation
+    
+-   Review API endpoint examples
+    
+
+----------
+
+## **🔄 Version History**
+
+-   **v3.0.0**: Current version with in-memory caching & Azure OpenAI
+    
+-   **v2.x**: Supabase storage integration
+    
+-   **v1.x**: Initial RAG implementation
+    
+
+----------
+
+Built using **FastAPI, React, Azure OpenAI, FAISS, Supabase, Tailwind CSS, and shadcn-ui**
